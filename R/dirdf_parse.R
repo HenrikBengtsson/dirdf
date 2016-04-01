@@ -2,23 +2,28 @@
 dirdf_parse <- function(pathnames, regexp, colnames, missing=NA_character_) {
   stopifnot(length(missing) == 1L)
 
-  # Parse
-  m <- regexec(regexp, pathnames)
+  ## Parse
   df <- regmatches(pathnames, m=m)
+  ncol <- length(m[[1]])
 
-  # Coerce to matrix
-  df <- Reduce(rbind, df)
-  rownames(df) <- NULL
+  ## Coerce to matrix
+  df <- matrix(unlist(df), ncol=ncol, byrow=TRUE)
+  ## Remove the first column; it's the complete regex match
+  df <- df[,-1,drop=FALSE]
 
-  # Tweak
+
+  ## Default is that missing parts become empty strings
   if (nzchar(missing)) {
-      str(missing)
-    df[!nzchar(df)] <- as.character(missing)
+    ## Otherwise, set to requested missing value
+    m <- matrix(unlist(m), ncol=ncol, byrow=TRUE)
+    m <- m[,-1,drop=FALSE]
+    df[m == 0] <- as.character(missing)
   }
 
-  # Coerce to data.frame
+  ## Coerce to data.frame
   df <- as.data.frame(df, stringsAsFactors=FALSE)
-  colnames(df) <- c("pathname", colnames)
+  colnames(df) <- c(colnames)
+  df <- cbind(pathname=pathnames, df)
   class(df) <- c("dirdf", class(df))
 
   df
