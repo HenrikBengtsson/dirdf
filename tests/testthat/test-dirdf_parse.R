@@ -1,7 +1,7 @@
-context("templateToRegex")
+context("dirdf_parse")
 
 n_ <- function(){
-  paste0(sample(c(letters, 0:9), 10), collapse = "")
+  paste0(sample(c(letters, LETTERS, 0:9), 10), collapse = "")
 }
 
 make_path <- function(){
@@ -26,11 +26,11 @@ make_path <- function(){
 
 template <- "f1/f2/date_id1,id2-id3.ext"
 
-set.seed(04-01-2016)
+set.seed(2016-04-01)
 df_parse <- dirdf_parse(replicate(10, make_path()$path),
                         template = template)
 
-set.seed(04-01-2016)
+set.seed(2016-04-01)
 df <- data.frame(matrix(nrow = 10, ncol = 8),
                  stringsAsFactors = FALSE)
 for(i in 1:10){
