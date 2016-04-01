@@ -35,7 +35,7 @@ dirdf_parse <- function(pathnames, template=NULL, regexp=NULL, colnames=NULL, mi
   ## Coerce to data.frame
   df <- as.data.frame(df, stringsAsFactors=FALSE)
   colnames(df) <- c(colnames)
-  df <- cbind(pathname=pathnames, df)
+  df <- cbind(pathname=pathnames, df, stringsAsFactors = FALSE)
   class(df) <- c("dirdf", class(df))
 
   df
