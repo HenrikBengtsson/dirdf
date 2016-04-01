@@ -17,6 +17,10 @@ matchPaths <- function(pattern, colnames, paths) {
   stopifnot(length(colnames) > 0)
 
   m <- regexec(pattern, paths)
+  nonMatching <- paths[!is.na(match(m, -1))]
+  if (length(nonMatching) > 0) {
+    stop("Unexpected path(s) found:", paste0("\n", nonMatching))
+  }
   vals <- regmatches(paths, m)
 
   colcount <- length(m[[1]])
