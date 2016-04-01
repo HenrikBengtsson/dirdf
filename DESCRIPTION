@@ -1,8 +1,9 @@
 Package: dirdf
-Title: What the Package Does (one line, title case)
+Title: Create a data frame from paths
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: Create a tidy data frame from of metadata encoded
+  in directory and file names.
 Depends: R (>= 3.2.3)
 License: What license is it under?
 LazyData: true

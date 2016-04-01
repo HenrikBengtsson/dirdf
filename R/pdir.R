@@ -13,7 +13,7 @@
 #' names of the resulting data frame. This argument is optional.
 #' @examples
 #' \dontrun{
-#'
+#'  files <- files <- list.files(all.files = TRUE, recursive = TRUE)
 #' }
 pdir <- function(paths, template = NULL, pattern = NULL,
                  column_names = NULL){
