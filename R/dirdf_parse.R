@@ -1,9 +1,9 @@
 #' @export
-dirdf_parse <- function(pathnames, colnames, template, missing=NA_character_) {
+dirdf_parse <- function(pathnames, regexp, colnames, missing=NA_character_) {
   stopifnot(length(missing) == 1L)
 
   # Parse
-  m <- regexec(template, pathnames)
+  m <- regexec(regexp, pathnames)
   df <- regmatches(pathnames, m=m)
 
   # Coerce to matrix
