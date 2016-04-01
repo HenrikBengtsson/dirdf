@@ -1,8 +1,10 @@
 #' @export
-dirdf_parse <- function(pathnames, regexp, colnames, missing=NA_character_) {
+dirdf_parse <- function(pathnames, template=NULL, regexp=NULL, colnames=NULL, missing=NA_character_) {
+  stopifnot(!is.null(template) != (!is.null(regexp) && !is.null(colnames)))
   stopifnot(length(missing) == 1L)
 
   ## Parse
+  m <- regexec(regexp, pathnames)
   df <- regmatches(pathnames, m=m)
   ncol <- length(m[[1]])
 

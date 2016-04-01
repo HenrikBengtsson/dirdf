@@ -1,7 +1,5 @@
 #' @export
 dirdf <- function(paths, template=NULL, regexp=NULL, colnames=NULL, missing=NA_character_, recursive=TRUE, ...) {
-  stopifnot(!is.null(template) != (!is.null(regexp) && !is.null(colnames)))
-
   if (!is.null(template)) {
     res <- templateToRegex(template)
     regexp <- res$pattern
