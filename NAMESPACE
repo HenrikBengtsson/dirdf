@@ -2,3 +2,5 @@
 
 export(dirdf)
 export(dirdf_parse)
+importFrom(utils,head)
+importFrom(utils,tail)
