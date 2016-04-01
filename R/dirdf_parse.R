@@ -19,8 +19,18 @@ dirdf_parse <- function(pathnames, template=NULL, regexp=NULL, colnames=NULL, mi
   stopifnot(!is.null(template) != (!is.null(regexp) && !is.null(colnames)))
   stopifnot(length(missing) == 1L)
 
+  if (!is.null(template)) {
+    templateResult <- templateToRegex(template)
+    regexp <- templateResult$pattern
+    colnames <- templateResult$names
+  }
+
   ## Parse
   m <- regexec(regexp, pathnames)
+  nonMatching <- pathnames[!is.na(match(m, -1))]
+  if (length(nonMatching) > 0) {
+    stop("Unexpected path(s) found:", paste0("\n", nonMatching))
+  }
   df <- regmatches(pathnames, m=m)
   ncol <- length(m[[1]])
 

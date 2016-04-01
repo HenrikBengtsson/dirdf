@@ -3,12 +3,15 @@
 # @examples
 # templateToRegex("foo/bar/baz.csv")
 # templateToRegex("foo/bar?/baz_qux.csv")
+# templateToRegex("foo1/bar?/baz_qux.csv")
+
+#' @importFrom utils head tail
 templateToRegex <- function(template) {
   stopifnot(is.character(template))
   stopifnot(length(template) == 1)
 
   # Match on variable names, possibly with trailing '?'
-  m <- gregexpr("[a-z]+\\??", template, ignore.case = TRUE)
+  m <- gregexpr("[a-z0-9]+\\??", template, ignore.case = TRUE)
 
   # mstr holds the variable names
   mstr <- regmatches(template, m)[[1]]
