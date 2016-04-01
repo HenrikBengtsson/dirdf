@@ -4,15 +4,17 @@
 #' @param pathnames character vector 0 or more pathnames
 #'
 #' @param template template character string containing the path that will be used to create the column names and the regular expression to parse the file names.
+#' @param regexp regular expression used to parse the file names
 #' @param colnames colnames vector containing the names of the columns in the data frame
 #' @param missing missing value for a missing variable value
 #'
 #' @examples
-#'
+#' \dontrun{
 #' example_pathnames <- dir(system.file(package = "dirdf", "examples", "dataset_1"))
 #'
 #' example_template1 <- "Year-Month-Day_Assay_Plasmid-Type-Fraction_WellNumber.extension"
 #' example_template2 <- "Date_Assay_Experiment_WellNumber.extension"
+#' }
 #'
 #' @export
 dirdf_parse <- function(pathnames, template=NULL, regexp=NULL, colnames=NULL, missing=NA_character_) {

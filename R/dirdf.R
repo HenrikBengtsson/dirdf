@@ -10,15 +10,16 @@
 #' @param colnames vector containing the names of the columns in the data frame
 #' @param missing value for a missing variable value
 #' @param recursive if TRUE, it will recursively search over directories
-#' @param ...
+#' @param ... Additional arguments pass to \code{\link[base]{dir}()}.
 #'
-#' @example
-#'
+#' @examples
+#' \dontrun{
 #' example_path <- system.file(package = "dirdf", "examples", "dataset_1")
 #' example_template1 <- "Year-Month-Day_Assay_Plasmid-Type-Fraction_WellNumber.extension"
 #' example_template2 <- "Date_Assay_Experiment_WellNumber.extension"
 #'
 #' dirdf(example_path1, template = example_template)
+#' }
 #'
 #' @export
 dirdf <- function(paths, template=NULL, regexp=NULL, colnames=NULL, missing=NA_character_, recursive=TRUE, ...) {
