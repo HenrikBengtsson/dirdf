@@ -1,7 +1,13 @@
 Package: dirdf
 Title: Extracts Metadata from Directory and File Names
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R:
+  person("Henrik", "Bengtsson"),
+  person("Jenny", "Bryan"),
+  person("Joe", "Cheng"),
+  person("Sean", "Kross"),
+  person("Tiffany", "Timbers"),
+  person("Melissa", "Guzman")
 Description: Extract metadata from directory and file names based on a template into data frame.
 Depends:
     R (>= 3.2.3)
