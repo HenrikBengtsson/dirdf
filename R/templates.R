@@ -8,7 +8,7 @@ templateToRegex <- function(template) {
   stopifnot(length(template) == 1)
 
   # Match on variable names, possibly with trailing '?'
-  m <- gregexpr("[a-z]+\\??", template)
+  m <- gregexpr("[a-z]+\\??", template, ignore.case = TRUE)
 
   # mstr holds the variable names
   mstr <- regmatches(template, m)[[1]]
