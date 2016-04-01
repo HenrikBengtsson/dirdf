@@ -1,2 +1,4 @@
+^.*\.tar\.gz$
+^\..*$
 ^.*\.Rproj$
 ^\.Rproj\.user$
