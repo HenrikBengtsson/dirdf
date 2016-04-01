@@ -5,7 +5,7 @@ Authors@R: person("First", "Last", email = "first.last@example.com", role = c("a
 Description: Extract metadata from directory and file names based on a template into data frame.
 Depends:
     R (>= 3.2.3)
-License: What license is it under?
+License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1
 Suggests: testthat
