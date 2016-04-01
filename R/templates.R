@@ -4,6 +4,8 @@
 # templateToRegex("foo/bar/baz.csv")
 # templateToRegex("foo/bar?/baz_qux.csv")
 # templateToRegex("foo1/bar?/baz_qux.csv")
+
+#' @importFrom utils head tail
 templateToRegex <- function(template) {
   stopifnot(is.character(template))
   stopifnot(length(template) == 1)
