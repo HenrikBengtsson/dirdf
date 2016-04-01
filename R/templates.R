@@ -1,8 +1,8 @@
 # Given a template, returns a list with "pattern" and "names" elements
 #
-#' @examples
-#' templateToRegex("foo/bar/baz.csv")
-#' templateToRegex("foo/bar?/baz_qux.csv")
+# @examples
+# templateToRegex("foo/bar/baz.csv")
+# templateToRegex("foo/bar?/baz_qux.csv")
 templateToRegex <- function(template) {
   stopifnot(is.character(template))
   stopifnot(length(template) == 1)
