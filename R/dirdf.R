@@ -1,14 +1,15 @@
+#' List Files in a Directory as a Data Frame
+#'
 #' Creates a data frame using information from paths and file names.
 #' It searches through the directories in order to create the path names of the files.
+#' It accepts either a \link[=templates]{template} or a regular expression and column names.
 #'
-#' It accepts either a template or a regular expression and column names.
+#' @seealso \code{\link{dirdf_parse}}
+#'
+#' @inheritParams dirdf_parse
 #'
 #' @param paths character vector with zero or more paths that will be searched
 #'
-#' @param template character string containing the path that will be used to create the column names and the regular expression to parse the file names.
-#' @param regexp regular expression used to parse the file names
-#' @param colnames vector containing the names of the columns in the data frame
-#' @param missing value for a missing variable value
 #' @param recursive if TRUE, it will recursively search over directories
 #' @param ... Additional arguments pass to \code{\link[base]{dir}()}.
 #'
