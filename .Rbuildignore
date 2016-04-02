@@ -1,3 +1,4 @@
+^Makefile$
 ^.*\.tar\.gz$
 ^\..*$
 ^.*\.Rproj$
