@@ -2,8 +2,7 @@
 % Please edit documentation in R/dirdf.R
 \name{dirdf}
 \alias{dirdf}
-\title{Creates a data frame using information from paths and file names.
-It searches through the directories in order to create the path names of the files.}
+\title{List Files in a Directory as a Data Frame}
 \usage{
 dirdf(paths, template = NULL, regexp = NULL, colnames = NULL,
   missing = NA_character_, recursive = TRUE, ...)
@@ -11,20 +10,27 @@ dirdf(paths, template = NULL, regexp = NULL, colnames = NULL,
 \arguments{
 \item{paths}{character vector with zero or more paths that will be searched}
 
-\item{template}{character string containing the path that will be used to create the column names and the regular expression to parse the file names.}
+\item{template}{\link[=templates]{template} character string, e.g.
+\code{"Country/Province/City/StationID_Date.ext"}.}
 
 \item{regexp}{regular expression used to parse the file names}
 
-\item{colnames}{vector containing the names of the columns in the data frame}
+\item{colnames}{character vector containing the names of the columns in the
+data frame. Not required if using \code{template} or if \code{regexp} uses
+named capturing groups (see examples), but may still be used to override
+column names.}
 
-\item{missing}{value for a missing variable value}
+\item{missing}{value to use for unmatched optional template elements or
+regexp capturing groups.}
 
 \item{recursive}{if TRUE, it will recursively search over directories}
 
 \item{...}{Additional arguments pass to \code{\link[base]{dir}()}.}
 }
 \description{
-It accepts either a template or a regular expression and column names.
+Creates a data frame using information from paths and file names.
+It searches through the directories in order to create the path names of the files.
+It accepts either a \link[=templates]{template} or a regular expression and column names.
 }
 \examples{
 \dontrun{
@@ -35,5 +41,8 @@ example_template2 <- "Date_Assay_Experiment_WellNumber.extension"
 dirdf(example_path1, template = example_template)
 }
 
+}
+\seealso{
+\code{\link{dirdf_parse}}
 }
 
