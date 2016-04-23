@@ -3,3 +3,9 @@
 .RData
 .DS_Store
 */.DS_Store
+Makefile
+.make/
+.test/
+.covr.R
+covr-utils.R
+
