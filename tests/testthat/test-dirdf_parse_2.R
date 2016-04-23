@@ -1,4 +1,4 @@
-context("Henrik")
+context("dirdf_parse")
 
 pathnames <- c(
   "2013-06-26,BRAFWTNEGASSAY,Plasmid-Cellline-100,A01.csv",
