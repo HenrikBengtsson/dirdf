@@ -1,10 +1,10 @@
 context("dirdf_parse")
 
-n_ <- function(){
+n_ <- function() {
   paste0(sample(c(letters, LETTERS, 0:9), 10), collapse = "")
 }
 
-make_path <- function(){
+make_path <- function() {
   dirs <- list()
   for(i in 1:6){
     dirs[[i]] <- n_()

@@ -30,8 +30,7 @@
 #' @example incl/dirdf_parse.R
 #'
 #' @export
-dirdf_parse <- function(pathnames, template=NULL, regexp=NULL, colnames=NULL,
-  missing=NA_character_, ignore.case = FALSE, perl = TRUE) {
+dirdf_parse <- function(pathnames, template = NULL, regexp = NULL, colnames = NULL, missing = NA_character_, ignore.case = FALSE, perl = TRUE) {
   stopifnot(xor(!is.null(template), !is.null(regexp)))
   stopifnot(length(missing) == 1L)
 
@@ -51,7 +50,7 @@ dirdf_parse <- function(pathnames, template=NULL, regexp=NULL, colnames=NULL,
   df <- regexprMatchToDF(pathnames, m, colnames = colnames, missing = missing)
 
   ## Coerce to data.frame
-  df <- cbind(pathname=pathnames, df, stringsAsFactors = FALSE)
+  df <- cbind(pathname = pathnames, df, stringsAsFactors = FALSE)
   class(df) <- c("dirdf", class(df))
 
   df
