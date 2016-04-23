@@ -15,11 +15,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' example_path <- system.file(package = "dirdf", "examples", "dataset_1")
+#' example_path1 <- system.file(package = "dirdf", "examples", "dataset_1")
+#' example_path2 <- system.file(package = "dirdf", "examples", "dataset_2")
 #' example_template1 <- "Year-Month-Day_Assay_Plasmid-Type-Fraction_WellNumber.extension"
 #' example_template2 <- "Date_Assay_Experiment_WellNumber.extension"
 #'
-#' dirdf(example_path1, template = example_template)
+#' dirdf(example_path1, template = example_template1)
+#' dirdf(example_path2, template = example_template2)
 #' }
 #'
 #' @export
