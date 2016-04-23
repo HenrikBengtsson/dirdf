@@ -7,5 +7,5 @@ Makefile
 .make/
 .test/
 .covr.R
+.covr.rds
 covr-utils.R
-

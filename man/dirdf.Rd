@@ -33,15 +33,15 @@ It searches through the directories in order to create the path names of the fil
 It accepts either a \link[=templates]{template} or a regular expression and column names.
 }
 \examples{
-\dontrun{
-example_path1 <- system.file(package = "dirdf", "examples", "dataset_1")
-example_path2 <- system.file(package = "dirdf", "examples", "dataset_2")
-example_template1 <- "Year-Month-Day_Assay_Plasmid-Type-Fraction_WellNumber.extension"
-example_template2 <- "Date_Assay_Experiment_WellNumber.extension"
+path1 <- system.file(package = "dirdf", "examples", "dataset_1")
+template1 <- "Year-Month-Day_Assay_Plasmid-Type-Fraction_WellNumber?.extension"
+files1 <- dirdf(path1, template = template1)
+print(files1)
 
-dirdf(example_path1, template = example_template1)
-dirdf(example_path2, template = example_template2)
-}
+path2 <- system.file(package = "dirdf", "examples", "dataset_2")
+template2 <- "Date_Assay_Experiment_WellNumber?.extension"
+files2 <- dirdf(path2, template = template2)
+print(files2)
 
 }
 \seealso{
