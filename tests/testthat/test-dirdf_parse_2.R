@@ -8,8 +8,7 @@ pathnames <- c(
   "2016-04-01,BRAFWTNEGASSAY,FFPEDNA-CRC-1-41.csv"
 )
 
-df <- data.frame(pathnames = pathnames,
-                 date = c("2013-06-26", "2013-06-26",
+df <- data.frame(date = c("2013-06-26", "2013-06-26",
                           "2014-02-26", "2014-03-05",
                           "2016-04-01"),
                  assay = rep("BRAFWTNEGASSAY", 5),
@@ -18,7 +17,8 @@ df <- data.frame(pathnames = pathnames,
                                 "FFPEDNA-CRC-REPEAT",
                                 "FFPEDNA-CRC-1-41"),
                  well = c("A01", "A02", "D08", "platefile", "-"),
-                 ext = rep("csv", 5), stringsAsFactors = FALSE)
+                 ext = rep("csv", 5), pathnames = pathnames,
+                 stringsAsFactors = FALSE)
 
 df_parse <- dirdf_parse(
   pathnames,

@@ -1,6 +1,6 @@
 Package: dirdf
 Title: Extracts Metadata from Directory and File Names
-Version: 0.0.0.9002
+Version: 0.0.0.9004
 Authors@R: c(
   person("Henrik", "Bengtsson", role = c("aut", "cre"), email="henrikb@braju.com"),
   person("Jenny", "Bryan", role = "aut"),
