@@ -19,8 +19,8 @@ make_path <- function() {
   path <- file.path(dirs[[5]], dirs[[6]], file_name, fsep = "/")
 
   # `vec` is the corresponding row of the data frame
-  vec <- c(path, dirs[[5]], dirs[[6]], date, dirs[[1]],
-           dirs[[2]], dirs[[3]], dirs[[4]])
+  vec <- c(dirs[[5]], dirs[[6]], date, dirs[[1]],
+           dirs[[2]], dirs[[3]], dirs[[4]], path)
   list(path = path, vec = vec)
 }
 
@@ -36,9 +36,10 @@ df <- data.frame(matrix(nrow = 10, ncol = 8),
 for(i in 1:10){
   df[i,] <- make_path()$vec
 }
-colnames(df) <- c("pathname", "f1", "f2", "date", "id1",
-                  "id2", "id3", "ext")
+colnames(df) <- c("f1", "f2", "date", "id1",
+                  "id2", "id3", "ext", "pathname")
 
 test_that("Randomly generated paths match with dirdf_parse().", {
   expect_equal(df, df_parse, check.attributes = FALSE)
 })
+

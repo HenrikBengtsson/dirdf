@@ -2,7 +2,7 @@ context("templates")
 
 verifyTemplate <- function(template, path, expected, ...) {
   results <- dirdf_parse(path, template, ...)[1,,drop=TRUE]
-  expect_equivalent(results, c(list(pathname=path), expected))
+  expect_equivalent(results, c(expected, list(pathname=path)))
 }
 
 describe("Templates", {
