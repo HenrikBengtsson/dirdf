@@ -50,7 +50,7 @@ dirdf_parse <- function(pathnames, template = NULL, regexp = NULL, colnames = NU
   df <- regexprMatchToDF(pathnames, m, colnames = colnames, missing = missing)
 
   ## Coerce to data.frame
-  df <- cbind(pathname = pathnames, df, stringsAsFactors = FALSE)
+  df <- cbind(df, pathname = pathnames, stringsAsFactors = FALSE)
   class(df) <- c("dirdf", class(df))
 
   df
