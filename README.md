@@ -1,6 +1,7 @@
 # dirdf
 
 [![Build Status](https://travis-ci.org/ropenscilabs/dirdf.svg?branch=master)](https://travis-ci.org/ropenscilabs/dirdf) 
+[![codecov](https://codecov.io/gh/ropenscilabs/dirdf/badge.svg)](https://codecov.io/gh/ropenscilabs/dirdf)
 
 Create tidy data frames of file metadata from directory and
 file names.
