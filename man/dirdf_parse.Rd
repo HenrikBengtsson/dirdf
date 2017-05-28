@@ -67,4 +67,3 @@ dirdf_parse(pathnames2, template2)
 \seealso{
 \code{\link{dirdf}}
 }
-

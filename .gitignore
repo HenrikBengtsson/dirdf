@@ -9,3 +9,4 @@ Makefile
 .covr.R
 .covr.rds
 covr-utils.R
+inst/doc

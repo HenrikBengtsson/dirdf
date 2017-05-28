@@ -50,4 +50,3 @@ paths <- c(
 dirdf_parse(paths, template)
 
 }
-

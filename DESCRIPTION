@@ -13,7 +13,10 @@ Authors@R: c(
 Description: Extract metadata from directory and file names based on a template into data frame.
 Depends:
     R (>= 3.2.3)
+Suggests:
+    knitr
+VignetteBuilder:
+    knitr
 License: MIT + file LICENSE
 LazyData: true
-RoxygenNote: 5.0.1
-Suggests: testthat
+RoxygenNote: 6.0.1
