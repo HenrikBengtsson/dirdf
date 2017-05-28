@@ -14,7 +14,8 @@ Description: Extract metadata from directory and file names based on a template 
 Depends:
     R (>= 3.2.3)
 Suggests:
-    knitr
+    knitr,
+    testthat
 VignetteBuilder:
     knitr
 License: MIT + file LICENSE

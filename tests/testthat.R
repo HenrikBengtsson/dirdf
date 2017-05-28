@@ -1,4 +1,5 @@
-library(testthat)
-library(dirdf)
+library("dirdf")
 
-test_check("dirdf")
+if (require("testthat")) {
+  test_check("dirdf")
+}
