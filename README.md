@@ -13,4 +13,4 @@ file names.
 devtools::install_github("ropenscilabs/dirdf")
 ```
 
-## [Intro](https://rawgit.com/ropenscilabs/dirdf/master/vignettes/slides.html)
+## [Intro](https://rawgit.com/ropenscilabs/dirdf/fad6a18194978f349dc13639728c00522cea8a94/vignettes/slides.html)
