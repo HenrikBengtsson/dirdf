@@ -2,29 +2,33 @@
 #'
 #' Creates a data frame using information from the paths and file names. It
 #' accepts either a template or a regular expression and column names. Similar
-#' to \code{\link{dirdf}}, but this takes a vector of pathnames and tries to
-#' match them directly, rather than calling \code{list.files} on them and
+#' to [dirdf()], but this takes a vector of pathnames and tries to
+#' match them directly, rather than calling [base::dir()] on them and
 #' matching those results. This is helpful if you want to filter or transform
 #' the set of paths before matching, e.g. to remove any irrelevant filenames
 #' like .gitignore, .DS_Store, desktop.ini.
 #'
-#' @seealso \code{\link{dirdf}}
+#' @seealso [dirdf()]
 #'
 #' @param pathnames character vector of pathname(s), e.g. the result of calling
-#'   \code{\link{list.files}}.
+#'   [base::dir()].
 #'
-#' @param template \link[=templates]{template} character string, e.g.
-#'   \code{"Country/Province/City/StationID_Date.ext"}.
-#' @param regexp regular expression used to parse the file names
+#' @param template [template][templates] character string, e.g.
+#'   `"Country/Province/City/StationID_Date.ext"`.
+#' 
+#' @param regexp regular expression used to parse the file names.
+#' 
 #' @param colnames character vector containing the names of the columns in the
-#'   data frame. Not required if using \code{template} or if \code{regexp} uses
+#'   data frame. Not required if using `template` or if `regexp` uses
 #'   named capturing groups (see examples), but may still be used to override
 #'   column names.
+#' 
 #' @param missing value to use for unmatched optional template elements or
 #'   regexp capturing groups.
-#' @param ignore.case,perl If \code{regexp} is used, these are passed to
-#'   \code{\link{regexpr}}. Note that unlike \code{regexpr}, the default value
-#'   for \code{perl} is \code{TRUE} (to make it more convenient to use named
+#' 
+#' @param ignore.case,perl If `regexp` is used, these are passed to
+#'   [base::regexpr()]. Note that unlike `regexpr`, the default value
+#'   for `perl` is `TRUE` (to make it more convenient to use named
 #'   capture groups, which are only supported in Perl mode).
 #'
 #' @example incl/dirdf_parse.R

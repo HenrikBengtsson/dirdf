@@ -1,6 +1,6 @@
 Package: dirdf
 Title: Extracts Metadata from Directory and File Names
-Version: 0.0.0.9004
+Version: 0.0.0.9005
 Authors@R: c(
   person("Henrik", "Bengtsson", role = c("aut", "cre"), email="henrikb@braju.com"),
   person("Jenny", "Bryan", role = "aut"),
@@ -21,3 +21,4 @@ VignetteBuilder:
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)

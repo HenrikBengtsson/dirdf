@@ -8,20 +8,20 @@ A friendly, focused alternative to using regular expressions for path
 parsing.
 }
 \details{
-The purpose of the \emph{dirdf} package is to let you, the user, write a path
+The purpose of the \pkg{dirdf} package is to let you, the user, write a path
 specification that we can apply to file paths, extracting out relevant chunks
 into data frame columns. The most obvious mechanism for doing so is a regular
-expression, and indeed, \emph{dirdf} lets you provide a regex argument.
+expression, and indeed, \pkg{dirdf} lets you provide a regex argument.
 
 But for most reasonable directory/file naming conventions, regex is overkill;
-its power is wasted on something like YYYY-MM/DD/LocationId/SubjectId.csv,
+its power is wasted on something like \code{YYYY-MM/DD/LocationId/SubjectId.csv},
 yet you still have to pay the price of regexes being difficult to write and
 to read, and easy to get subtly wrong.
 
 Path templates are a friendlier alternative. A path template is a string that
 consists of variable names and delimiters. A variable name is any contiguous
-run of alphanumeric characters (optionally, with a trailing \code{?}
-character); delimiters are everything else.
+run of alphanumeric characters (optionally, with a trailing \code{?} character);
+delimiters are everything else.
 
 For example:
 

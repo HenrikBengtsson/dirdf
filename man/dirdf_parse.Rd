@@ -9,12 +9,12 @@ dirdf_parse(pathnames, template = NULL, regexp = NULL, colnames = NULL,
 }
 \arguments{
 \item{pathnames}{character vector of pathname(s), e.g. the result of calling
-\code{\link{list.files}}.}
+\code{\link[base:dir]{base::dir()}}.}
 
 \item{template}{\link[=templates]{template} character string, e.g.
 \code{"Country/Province/City/StationID_Date.ext"}.}
 
-\item{regexp}{regular expression used to parse the file names}
+\item{regexp}{regular expression used to parse the file names.}
 
 \item{colnames}{character vector containing the names of the columns in the
 data frame. Not required if using \code{template} or if \code{regexp} uses
@@ -25,15 +25,15 @@ column names.}
 regexp capturing groups.}
 
 \item{ignore.case, perl}{If \code{regexp} is used, these are passed to
-\code{\link{regexpr}}. Note that unlike \code{regexpr}, the default value
+\code{\link[base:regexpr]{base::regexpr()}}. Note that unlike \code{regexpr}, the default value
 for \code{perl} is \code{TRUE} (to make it more convenient to use named
 capture groups, which are only supported in Perl mode).}
 }
 \description{
 Creates a data frame using information from the paths and file names. It
 accepts either a template or a regular expression and column names. Similar
-to \code{\link{dirdf}}, but this takes a vector of pathnames and tries to
-match them directly, rather than calling \code{list.files} on them and
+to \code{\link[=dirdf]{dirdf()}}, but this takes a vector of pathnames and tries to
+match them directly, rather than calling \code{\link[base:dir]{base::dir()}} on them and
 matching those results. This is helpful if you want to filter or transform
 the set of paths before matching, e.g. to remove any irrelevant filenames
 like .gitignore, .DS_Store, desktop.ini.
@@ -65,5 +65,5 @@ template2 <- "Date_Assay_Experiment_WellNumber?.extension"
 dirdf_parse(pathnames2, template2)
 }
 \seealso{
-\code{\link{dirdf}}
+\code{\link[=dirdf]{dirdf()}}
 }

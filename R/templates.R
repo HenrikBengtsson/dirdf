@@ -3,27 +3,27 @@
 #' A friendly, focused alternative to using regular expressions for path
 #' parsing.
 #'
-#' The purpose of the \emph{dirdf} package is to let you, the user, write a path
+#' The purpose of the \pkg{dirdf} package is to let you, the user, write a path
 #' specification that we can apply to file paths, extracting out relevant chunks
 #' into data frame columns. The most obvious mechanism for doing so is a regular
-#' expression, and indeed, \emph{dirdf} lets you provide a regex argument.
+#' expression, and indeed, \pkg{dirdf} lets you provide a regex argument.
 #'
 #' But for most reasonable directory/file naming conventions, regex is overkill;
-#' its power is wasted on something like YYYY-MM/DD/LocationId/SubjectId.csv,
+#' its power is wasted on something like `YYYY-MM/DD/LocationId/SubjectId.csv`,
 #' yet you still have to pay the price of regexes being difficult to write and
 #' to read, and easy to get subtly wrong.
 #'
 #' Path templates are a friendlier alternative. A path template is a string that
 #' consists of variable names and delimiters. A variable name is any contiguous
-#' run of alphanumeric characters (optionally, with a trailing \code{?}
-#' character); delimiters are everything else.
+#' run of alphanumeric characters (optionally, with a trailing `?` character);
+#' delimiters are everything else.
 #'
 #' For example:
 #'
-#' \code{Year-Month/Day/FirstName_MiddleInitial?_LastName.ext}
+#' `Year-Month/Day/FirstName_MiddleInitial?_LastName.ext`
 #'
-#' In this example, \code{Year}, \code{Month}, \code{Day}, \code{FirstName},
-#' \code{MiddleInitial}, \code{LastName}, and \code{ext} are variable names. All
+#' In this example, `Year`, `Month`, `Day`, `FirstName`,
+#' `MiddleInitial`, `LastName`, and `ext` are variable names. All
 #' of the dash, slash, underscore, and period characters between them are
 #' considered delimiters.
 #'
@@ -31,10 +31,10 @@
 #' non-slash characters, up until the next delimiter. (Slash will never be
 #' considered part of a variable match, as we consider it the path separator.)
 #'
-#' The trailing question mark makes \code{MiddleInitial?} optional; both its
-#' value and its preceding delimiter (\code{_} in this case) can be omitted from
+#' The trailing question mark makes `MiddleInitial?` optional; both its
+#' value and its preceding delimiter (`_` in this case) can be omitted from
 #' target paths, in which case the resulting value for that variable will be
-#' \code{NA} (or in some edge cases, \code{""}).
+#' `NA` (or in some edge cases, `""`).
 #'
 #' @examples
 #' template <- "Year-Month/Day/FirstName_MiddleInitial?_LastName.ext"

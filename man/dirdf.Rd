@@ -8,12 +8,12 @@ dirdf(paths, template = NULL, regexp = NULL, colnames = NULL,
   missing = NA_character_, recursive = TRUE, ...)
 }
 \arguments{
-\item{paths}{character vector with zero or more paths that will be searched}
+\item{paths}{character vector with zero or more paths that will be searched.}
 
 \item{template}{\link[=templates]{template} character string, e.g.
 \code{"Country/Province/City/StationID_Date.ext"}.}
 
-\item{regexp}{regular expression used to parse the file names}
+\item{regexp}{regular expression used to parse the file names.}
 
 \item{colnames}{character vector containing the names of the columns in the
 data frame. Not required if using \code{template} or if \code{regexp} uses
@@ -23,9 +23,9 @@ column names.}
 \item{missing}{value to use for unmatched optional template elements or
 regexp capturing groups.}
 
-\item{recursive}{if TRUE, it will recursively search over directories}
+\item{recursive}{if \code{TRUE}, it will recursively search over directories}
 
-\item{...}{Additional arguments pass to \code{\link[base]{dir}()}.}
+\item{...}{Additional arguments pass to \code{\link[base:dir]{base::dir()}}.}
 }
 \description{
 Creates a data frame using information from paths and file names.
@@ -45,5 +45,5 @@ print(files2)
 
 }
 \seealso{
-\code{\link{dirdf_parse}}
+\code{\link[=dirdf_parse]{dirdf_parse()}}
 }
