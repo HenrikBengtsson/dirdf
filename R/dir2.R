@@ -37,7 +37,7 @@
 #' @importFrom utils file_test
 #'
 #' @export
-dir2 <- function(path = ".", pattern = NULL, all.files = FALSE, full.names = FALSE, recursive = FALSE, ignore.case = FALSE, include.dirs = FALSE, absolute = FALSE) {
+dir2 <- function(path = ".", pattern = NULL, all.files = FALSE, full.names = TRUE, recursive = FALSE, ignore.case = FALSE, include.dirs = FALSE, absolute = FALSE) {
   path <- path[file_test("-d", path)]
   if (length(path) == 0) return(character(0))
   if (length(path) > 1) {
@@ -51,12 +51,13 @@ dir2 <- function(path = ".", pattern = NULL, all.files = FALSE, full.names = FAL
   depth <- as.numeric(recursive)
   if (is.logical(recursive) && recursive) depth <- +Inf
 
-  names <- dir(path = path, pattern = NULL, all.files = all.files,
+  files <- dir(path = path, pattern = NULL, all.files = all.files,
                full.names = FALSE, recursive = FALSE,
                ignore.case = ignore.case, no.. = TRUE)
-  if (length(names) == 0) return(character(0))
+  if (length(files) == 0) return(character(0))
 
-  files <- file.path(path, names)
+  if (path != ".") files <- file.path(path, files)
+
   is_dir <- utils::file_test("-d", files)
   dirs <- files[is_dir]
 

@@ -4,7 +4,7 @@
 \alias{dir2}
 \title{List files and directories recursively to a certain depth}
 \usage{
-dir2(path = ".", pattern = NULL, all.files = FALSE, full.names = FALSE,
+dir2(path = ".", pattern = NULL, all.files = FALSE, full.names = TRUE,
   recursive = FALSE, ignore.case = FALSE, include.dirs = FALSE,
   absolute = FALSE)
 }
