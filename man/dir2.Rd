@@ -44,6 +44,17 @@ List files and directories recursively to a certain depth
 Files \file{.} and \file{..} (the current and parent directories) are never
 returned.
 }
+\examples{
+path <- system.file(package = "dirdf")
+files <- dir2(path, include.dirs = TRUE)
+print(files)
+
+files <- dir2(path, recursive = 1L)
+print(files)
+
+files <- dir2(path, recursive = TRUE)
+print(files)
+}
 \seealso{
 \code{\link[base:dir]{base::dir()}}
 }

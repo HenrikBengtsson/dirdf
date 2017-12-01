@@ -30,6 +30,8 @@
 #' @details
 #' Files \file{.} and \file{..} (the current and parent directories) are never
 #' returned.
+#'
+#' @example incl/dir2.R
 #' 
 #' @seealso
 #' [base::dir()]
