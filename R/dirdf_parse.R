@@ -35,8 +35,8 @@
 #'
 #' @export
 dirdf_parse <- function(pathnames, template = NULL, regexp = NULL, colnames = NULL, missing = NA_character_, ignore.case = FALSE, perl = TRUE) {
-  stopifnot(xor(!is.null(template), !is.null(regexp)))
-  stopifnot(length(missing) == 1L)
+  stop_if_not(xor(!is.null(template), !is.null(regexp)))
+  stop_if_not(length(missing) == 1L)
 
   if (!is.null(template)) {
     regexp <- templateToRegex(template)
