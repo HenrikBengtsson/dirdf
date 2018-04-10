@@ -57,8 +57,8 @@ NULL
 
 #' @importFrom utils head tail
 templateToRegex <- function(template) {
-  stopifnot(is.character(template))
-  stopifnot(length(template) == 1)
+  stop_if_not(is.character(template))
+  stop_if_not(length(template) == 1)
 
   # Match on variable names, possibly with trailing '?'
   m <- gregexpr("[a-z0-9]+\\??", template, ignore.case = TRUE)
@@ -73,7 +73,7 @@ templateToRegex <- function(template) {
   # sep[1] + mstr[1] + sep[2] + mstr[2] + ... + sep[n] + mstr[n] + sep[n+1]
   sep <- regmatches(template, m, invert = TRUE)[[1]]
 
-  stopifnot(length(sep) == length(mstr) + 1)
+  stop_if_not(length(sep) == length(mstr) + 1)
 
   # col names minus trailing ?
   bareNames <- sub("\\?", "", mstr)
@@ -100,7 +100,7 @@ templateToRegex <- function(template) {
       sprintf("(?P<%s>[^/]*?)", colBare)
     }
     # See weird sub call below
-    stopifnot(grepl("\\*\\?\\)$", colPattern))
+    stop_if_not(grepl("\\*\\?\\)$", colPattern))
 
     isOptional <- grepl("\\?$", col)
     if (isOptional) {
