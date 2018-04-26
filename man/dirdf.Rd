@@ -2,9 +2,13 @@
 % Please edit documentation in R/dirdf.R
 \name{dirdf}
 \alias{dirdf}
+\alias{dirdf2}
 \title{List Files in a Directory as a Data Frame}
 \usage{
 dirdf(paths, template = NULL, regexp = NULL, colnames = NULL,
+  missing = NA_character_, recursive = TRUE, ...)
+
+dirdf2(paths, template = NULL, regexp = NULL, colnames = NULL,
   missing = NA_character_, recursive = TRUE, ...)
 }
 \arguments{

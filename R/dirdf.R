@@ -22,3 +22,13 @@ dirdf <- function(paths, template = NULL, regexp = NULL, colnames = NULL, missin
 
   dirdf_parse(pathnames, template = template, colnames = colnames, regexp = regexp, missing = missing)
 }
+
+
+#' @rdname dirdf
+#' @export
+dirdf2 <- function(paths, template = NULL, regexp = NULL, colnames = NULL, missing = NA_character_, recursive = TRUE, ...) {
+  pathnames <- lapply(paths, FUN = dir2, recursive = recursive, ...)
+  pathnames <- unlist(pathnames, use.names = FALSE)
+
+  dirdf_parse(pathnames, template = template, colnames = colnames, regexp = regexp, missing = missing)
+}
