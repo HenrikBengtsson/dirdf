@@ -36,7 +36,7 @@ to \code{\link[=dirdf]{dirdf()}}, but this takes a vector of pathnames and tries
 match them directly, rather than calling \code{\link[base:dir]{base::dir()}} on them and
 matching those results. This is helpful if you want to filter or transform
 the set of paths before matching, e.g. to remove any irrelevant filenames
-like .gitignore, .DS_Store, desktop.ini.
+like \file{.gitignore}, \file{.DS_Store}, \file{desktop.ini}.
 }
 \examples{
 path1 <- system.file(package = "dirdf", "examples", "dataset_1")
