@@ -53,6 +53,11 @@ dirdf_parse <- function(pathnames, template = NULL, regexp = NULL, colnames = NU
 
   df <- regexprMatchToDF(pathnames, m, colnames = colnames, missing = missing)
 
+  ## Drop unwanted fields
+  names <- colnames(df)
+  drop <- grep("^_DROP_BEGIN_(.*)_DROP_END_$", names)
+  if (length(drop) > 0) df <- df[-drop]
+  
   ## Coerce to data.frame
   df <- cbind(df, pathname = pathnames, stringsAsFactors = FALSE)
   class(df) <- c("dirdf", class(df))

@@ -60,11 +60,12 @@ templateToRegex <- function(template) {
   stop_if_not(is.character(template))
   stop_if_not(length(template) == 1)
 
-  # Match on variable names, possibly with trailing '?'
-  m <- gregexpr("[a-z0-9]+\\??", template, ignore.case = TRUE)
+  # Match on variable names, possibly with trailing '?' or surrounded by '( )'
+  m <- gregexpr("([a-z0-9]+|\\([a-z0-9]+\\))\\??", template, ignore.case = TRUE)
 
   # mstr holds the variable names
   mstr <- regmatches(template, m)[[1]]
+
   # sep holds the literal values that come between the variable
   # names (the separators), including the part of the string
   # before the first variable and the part of the string after
@@ -72,11 +73,13 @@ templateToRegex <- function(template) {
   # template is:
   # sep[1] + mstr[1] + sep[2] + mstr[2] + ... + sep[n] + mstr[n] + sep[n+1]
   sep <- regmatches(template, m, invert = TRUE)[[1]]
-
   stop_if_not(length(sep) == length(mstr) + 1)
 
-  # col names minus trailing ?
-  bareNames <- sub("\\?", "", mstr)
+  # col names minus trailing?
+  bareNames <- sub("\\?$", "", mstr)
+
+  # col names minus drop pattern?
+  bareNames <- sub("^[(](.*)[)]$", "\\1", bareNames)
 
   # Intentionally not using mapply because in one particular case we may
   # need to mutate sep during iteration.
@@ -94,11 +97,14 @@ templateToRegex <- function(template) {
     # previous separator and the variable data. We need the next separator
     # just to help us form the regex for the variable data.
 
+    isDrop <- grepl("^\\(.*\\)\\??$", col)
+    if (isDrop) colBare <- sprintf("_DROP_BEGIN_%s_DROP_END_", colBare)
     colPattern <- if (nchar(post) == 1) {
       sprintf("(?P<%s>[^/%s]*?)", colBare, escapeRegexBrackets(post))
     } else {
       sprintf("(?P<%s>[^/]*?)", colBare)
     }
+
     # See weird sub call below
     stop_if_not(grepl("\\*\\?\\)$", colPattern))
 
