@@ -48,7 +48,15 @@ dir2 <- function(path = ".", pattern = NULL, all.files = FALSE, full.names = TRU
     return(files)
   }
 
-  if (absolute) path <- normalizePath(path, mustWork = TRUE)
+  if (absolute) {
+    path <- normalizePath(path, mustWork = TRUE)
+  } else {
+    ## Drop all trailing folder separators
+    path <- sub("[/\\]+$", "", path)
+    ## Drop any replicated folder separators
+    path <- sub("/[/]+", "/", path)
+    path <- sub("\\[\\]+", "\\", path)
+  }
 
   depth <- as.numeric(recursive)
   if (is.logical(recursive) && recursive) depth <- +Inf
