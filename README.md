@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/ropenscilabs/dirdf.svg)](https://travis-ci.org/ropenscilabs/dirdf) 
 [![Build Status](https://ci.appveyor.com/api/projects/status/egi4i7nwyvrvm160?svg=true)](https://ci.appveyor.com/project/HenrikBengtsson/dirdf)
 [![codecov](https://codecov.io/gh/ropenscilabs/dirdf/badge.svg)](https://codecov.io/gh/ropenscilabs/dirdf)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
 Create tidy data frames of file metadata from directory and file names.
 
@@ -141,3 +142,5 @@ Metadata in directory and path names
 9  LabB 2015 2014-07-06     OTHER Plasmid-Cellline-100  B01 csv     LabB,2015/2014-07-06_OTHER_Plasmid-Cellline-100_B01.csv
 10 LabB 2015 2016-01-11     OTHER     FFPEDNA-CRC-2-41 &lt;NA&gt; csv    LabB,2015/2016-01-11_OTHER_FFPEDNA-CRC-2-41.csv
 ```
+
+[![rOpenSci footer](http://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
