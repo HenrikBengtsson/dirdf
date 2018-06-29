@@ -2,37 +2,43 @@
 #'
 #' Creates a data frame using information from the paths and file names. It
 #' accepts either a template or a regular expression and column names. Similar
-#' to \code{\link{dirdf}}, but this takes a vector of pathnames and tries to
-#' match them directly, rather than calling \code{list.files} on them and
+#' to [dirdf()], but this takes a vector of pathnames and tries to
+#' match them directly, rather than calling [base::dir()] on them and
 #' matching those results. This is helpful if you want to filter or transform
 #' the set of paths before matching, e.g. to remove any irrelevant filenames
-#' like .gitignore, .DS_Store, desktop.ini.
+#' like \file{.gitignore}, \file{.DS_Store}, \file{desktop.ini}.
 #'
-#' @seealso \code{\link{dirdf}}
+#' @seealso [dirdf()]
 #'
 #' @param pathnames character vector of pathname(s), e.g. the result of calling
-#'   \code{\link{list.files}}.
+#'   [base::dir()].
 #'
-#' @param template \link[=templates]{template} character string, e.g.
-#'   \code{"Country/Province/City/StationID_Date.ext"}.
-#' @param regexp regular expression used to parse the file names
+#' @param template [template][templates] character string, e.g.
+#'   `"Country/Province/City/StationID_Date.ext"`.
+#' 
+#' @param regexp regular expression used to parse the file names.
+#'   Only one of the arguments `regexp` and `template` must be specified, i.e.
+#'   only one of them can be non-`NULL`.
+#' 
 #' @param colnames character vector containing the names of the columns in the
-#'   data frame. Not required if using \code{template} or if \code{regexp} uses
+#'   data frame. Not required if using `template` or if `regexp` uses
 #'   named capturing groups (see examples), but may still be used to override
 #'   column names.
+#' 
 #' @param missing value to use for unmatched optional template elements or
 #'   regexp capturing groups.
-#' @param ignore.case,perl If \code{regexp} is used, these are passed to
-#'   \code{\link{regexpr}}. Note that unlike \code{regexpr}, the default value
-#'   for \code{perl} is \code{TRUE} (to make it more convenient to use named
+#' 
+#' @param ignore.case,perl If `regexp` is used, these are passed to
+#'   [base::regexpr()]. Note that unlike `regexpr()`, the default value
+#'   for `perl` is `TRUE` (to make it more convenient to use named
 #'   capture groups, which are only supported in Perl mode).
 #'
 #' @example incl/dirdf_parse.R
 #'
 #' @export
 dirdf_parse <- function(pathnames, template = NULL, regexp = NULL, colnames = NULL, missing = NA_character_, ignore.case = FALSE, perl = TRUE) {
-  stopifnot(xor(!is.null(template), !is.null(regexp)))
-  stopifnot(length(missing) == 1L)
+  stop_if_not(xor(!is.null(template), !is.null(regexp)))
+  stop_if_not(length(missing) == 1L)
 
   if (!is.null(template)) {
     regexp <- templateToRegex(template)
@@ -49,6 +55,11 @@ dirdf_parse <- function(pathnames, template = NULL, regexp = NULL, colnames = NU
 
   df <- regexprMatchToDF(pathnames, m, colnames = colnames, missing = missing)
 
+  ## Drop unwanted fields
+  names <- colnames(df)
+  drop <- grep("^_DROP_BEGIN_(.*)_DROP_END_$", names)
+  if (length(drop) > 0) df <- df[-drop]
+  
   ## Coerce to data.frame
   df <- cbind(df, pathname = pathnames, stringsAsFactors = FALSE)
   class(df) <- c("dirdf", class(df))

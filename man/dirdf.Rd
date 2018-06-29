@@ -2,18 +2,24 @@
 % Please edit documentation in R/dirdf.R
 \name{dirdf}
 \alias{dirdf}
+\alias{dirdf2}
 \title{List Files in a Directory as a Data Frame}
 \usage{
 dirdf(paths, template = NULL, regexp = NULL, colnames = NULL,
   missing = NA_character_, recursive = TRUE, ...)
+
+dirdf2(paths, template = NULL, regexp = NULL, colnames = NULL,
+  missing = NA_character_, recursive = TRUE, ...)
 }
 \arguments{
-\item{paths}{character vector with zero or more paths that will be searched}
+\item{paths}{character vector with zero or more paths that will be searched.}
 
 \item{template}{\link[=templates]{template} character string, e.g.
 \code{"Country/Province/City/StationID_Date.ext"}.}
 
-\item{regexp}{regular expression used to parse the file names}
+\item{regexp}{regular expression used to parse the file names.
+Only one of the arguments \code{regexp} and \code{template} must be specified, i.e.
+only one of them can be non-\code{NULL}.}
 
 \item{colnames}{character vector containing the names of the columns in the
 data frame. Not required if using \code{template} or if \code{regexp} uses
@@ -23,9 +29,9 @@ column names.}
 \item{missing}{value to use for unmatched optional template elements or
 regexp capturing groups.}
 
-\item{recursive}{if TRUE, it will recursively search over directories}
+\item{recursive}{if \code{TRUE}, it will recursively search over directories.}
 
-\item{...}{Additional arguments pass to \code{\link[base]{dir}()}.}
+\item{\ldots}{Additional arguments pass to \code{\link[base:dir]{base::dir()}}.}
 }
 \description{
 Creates a data frame using information from paths and file names.
@@ -45,5 +51,5 @@ print(files2)
 
 }
 \seealso{
-\code{\link{dirdf_parse}}
+\code{\link[=dirdf_parse]{dirdf_parse()}}
 }

@@ -3,27 +3,27 @@
 #' A friendly, focused alternative to using regular expressions for path
 #' parsing.
 #'
-#' The purpose of the \emph{dirdf} package is to let you, the user, write a path
+#' The purpose of the \pkg{dirdf} package is to let you, the user, write a path
 #' specification that we can apply to file paths, extracting out relevant chunks
 #' into data frame columns. The most obvious mechanism for doing so is a regular
-#' expression, and indeed, \emph{dirdf} lets you provide a regex argument.
+#' expression, and indeed, \pkg{dirdf} lets you provide a regex argument.
 #'
 #' But for most reasonable directory/file naming conventions, regex is overkill;
-#' its power is wasted on something like YYYY-MM/DD/LocationId/SubjectId.csv,
+#' its power is wasted on something like `YYYY-MM/DD/LocationId/SubjectId.csv`,
 #' yet you still have to pay the price of regexes being difficult to write and
 #' to read, and easy to get subtly wrong.
 #'
 #' Path templates are a friendlier alternative. A path template is a string that
 #' consists of variable names and delimiters. A variable name is any contiguous
-#' run of alphanumeric characters (optionally, with a trailing \code{?}
-#' character); delimiters are everything else.
+#' run of alphanumeric characters (optionally, with a trailing `?` character);
+#' delimiters are everything else.
 #'
 #' For example:
 #'
-#' \code{Year-Month/Day/FirstName_MiddleInitial?_LastName.ext}
+#' `Year-Month/Day/FirstName_MiddleInitial?_LastName.ext`
 #'
-#' In this example, \code{Year}, \code{Month}, \code{Day}, \code{FirstName},
-#' \code{MiddleInitial}, \code{LastName}, and \code{ext} are variable names. All
+#' In this example, `Year`, `Month`, `Day`, `FirstName`,
+#' `MiddleInitial`, `LastName`, and `ext` are variable names. All
 #' of the dash, slash, underscore, and period characters between them are
 #' considered delimiters.
 #'
@@ -31,10 +31,13 @@
 #' non-slash characters, up until the next delimiter. (Slash will never be
 #' considered part of a variable match, as we consider it the path separator.)
 #'
-#' The trailing question mark makes \code{MiddleInitial?} optional; both its
-#' value and its preceding delimiter (\code{_} in this case) can be omitted from
+#' The trailing question mark makes `MiddleInitial?` optional; both its
+#' value and its preceding delimiter (`_` in this case) can be omitted from
 #' target paths, in which case the resulting value for that variable will be
-#' \code{NA} (or in some edge cases, \code{""}).
+#' `NA` (or in some edge cases, `""`).
+#'
+#' Surrounding with tilde (`~`) makes `~MiddleInitial~` to be marked for being dropped.
+#' It is possible to drop an optional field, e.g. `~MiddleInitial?~`.
 #'
 #' @examples
 #' template <- "Year-Month/Day/FirstName_MiddleInitial?_LastName.ext"
@@ -57,14 +60,16 @@ NULL
 
 #' @importFrom utils head tail
 templateToRegex <- function(template) {
-  stopifnot(is.character(template))
-  stopifnot(length(template) == 1)
+  stop_if_not(is.character(template))
+  stop_if_not(length(template) == 1)
 
-  # Match on variable names, possibly with trailing '?'
-  m <- gregexpr("[a-z0-9]+\\??", template, ignore.case = TRUE)
-
+  # Match on variable names, possibly with trailing '?'.
+  # Variable names may be surrounded by drop pattern '~name~'
+  m <- gregexpr("([a-z0-9]+\\??|[~]{1}[a-z0-9]+\\??[~]{1})", template, ignore.case = TRUE)
+  
   # mstr holds the variable names
   mstr <- regmatches(template, m)[[1]]
+
   # sep holds the literal values that come between the variable
   # names (the separators), including the part of the string
   # before the first variable and the part of the string after
@@ -72,11 +77,13 @@ templateToRegex <- function(template) {
   # template is:
   # sep[1] + mstr[1] + sep[2] + mstr[2] + ... + sep[n] + mstr[n] + sep[n+1]
   sep <- regmatches(template, m, invert = TRUE)[[1]]
+  stop_if_not(length(sep) == length(mstr) + 1)
 
-  stopifnot(length(sep) == length(mstr) + 1)
+  # col names minus drop pattern?
+  bareNames <- sub("^[~]{1}(.*)[~]{1}$", "\\1", mstr)
 
-  # col names minus trailing ?
-  bareNames <- sub("\\?", "", mstr)
+  # col names minus trailing?
+  bareNames <- sub("\\?$", "", bareNames)
 
   # Intentionally not using mapply because in one particular case we may
   # need to mutate sep during iteration.
@@ -86,21 +93,23 @@ templateToRegex <- function(template) {
     pre <- sep[i]
     post <- sep[i+1]
 
-    # col is the colname, possibly with a trailing '?'
+    # col is the colname, possibly with a trailing '?' or a surrounding drop pattern
     # pre is the separator that comes to the left
     # post is the separator that comes to the right
     #
     # The result of the callback function is a regex pattern that matches the
     # previous separator and the variable data. We need the next separator
     # just to help us form the regex for the variable data.
-
+    isDrop <- grepl("^[~]{1}.*\\??[~]{1}$", col)
+    if (isDrop) colBare <- sprintf("_DROP_BEGIN_%s_DROP_END_", colBare)
     colPattern <- if (nchar(post) == 1) {
       sprintf("(?P<%s>[^/%s]*?)", colBare, escapeRegexBrackets(post))
     } else {
       sprintf("(?P<%s>[^/]*?)", colBare)
     }
+
     # See weird sub call below
-    stopifnot(grepl("\\*\\?\\)$", colPattern))
+    stop_if_not(grepl("\\*\\?\\)$", colPattern))
 
     isOptional <- grepl("\\?$", col)
     if (isOptional) {
