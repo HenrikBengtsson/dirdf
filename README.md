@@ -1,7 +1,7 @@
 # dirdf - Extracts Metadata from Directory and File Names
 
 [![Build Status](https://travis-ci.org/ropenscilabs/dirdf.svg)](https://travis-ci.org/ropenscilabs/dirdf) 
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/dirdf?svg=true)](https://ci.appveyor.com/project/HenrikBengtsson/dirdf)
+[![Build Status](https://ci.appveyor.com/api/projects/status/egi4i7nwyvrvm160?svg=true)](https://ci.appveyor.com/project/HenrikBengtsson/dirdf)
 [![codecov](https://codecov.io/gh/ropenscilabs/dirdf/badge.svg)](https://codecov.io/gh/ropenscilabs/dirdf)
 
 Create tidy data frames of file metadata from directory and file names.
