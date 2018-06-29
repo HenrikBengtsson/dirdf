@@ -4,16 +4,19 @@
 \alias{dir2}
 \title{List files and directories recursively to a certain depth}
 \usage{
-dir2(path = ".", pattern = NULL, all.files = FALSE, full.names = TRUE,
-  recursive = FALSE, ignore.case = FALSE, include.dirs = FALSE,
-  absolute = FALSE)
+dir2(path = ".", pattern = NULL, perl = FALSE, all.files = FALSE,
+  full.names = TRUE, recursive = FALSE, ignore.case = FALSE,
+  include.dirs = FALSE, absolute = FALSE)
 }
 \arguments{
 \item{path}{a character vector of paths.}
 
-\item{pattern}{(optional) an optional regular expression.
+\item{pattern}{(optional) an optional \link[base:regex]{regular expression}.
 Full path names (including path and file names) that match the
 regular expression will be returned.}
+
+\item{perl}{If \code{TRUE}, Perl-compatible \link[base:regex]{regular expressions}
+are used, otherwise not.}
 
 \item{all.files}{If \code{FALSE}, non-visible files (prefixed with a \code{.}) are
 not returned.  If \code{TRUE}, all files are returned.}

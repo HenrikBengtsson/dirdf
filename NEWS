@@ -3,7 +3,9 @@ Package: dirdf
 
 Version: 0.1.0-9000 [2018-06-28]
 
- * ...
+NEW FEATURES:
+
+ * dir2() gained support for Perl-compatible regular expressions.
  
 
 Version: 0.1.0 [2018-06-28]

@@ -2,9 +2,12 @@
 #'
 #' @param path a character vector of paths.
 #' 
-#' @param pattern (optional) an optional regular expression.
+#' @param pattern (optional) an optional [regular expression][base::regex].
 #'        Full path names (including path and file names) that match the
 #'        regular expression will be returned.
+#'
+#' @param perl If `TRUE`, Perl-compatible [regular expressions][base::regex]
+#'        are used, otherwise not.
 #' 
 #' @param all.files If `FALSE`, non-visible files (prefixed with a `.`) are
 #'        not returned.  If `TRUE`, all files are returned.
@@ -39,7 +42,7 @@
 #' @importFrom utils file_test
 #'
 #' @export
-dir2 <- function(path = ".", pattern = NULL, all.files = FALSE, full.names = TRUE, recursive = FALSE, ignore.case = FALSE, include.dirs = FALSE, absolute = FALSE) {
+dir2 <- function(path = ".", pattern = NULL, perl = FALSE, all.files = FALSE, full.names = TRUE, recursive = FALSE, ignore.case = FALSE, include.dirs = FALSE, absolute = FALSE) {
   path <- path[file_test("-d", path)]
   if (length(path) == 0) return(character(0))
   if (length(path) > 1) {
@@ -89,7 +92,7 @@ dir2 <- function(path = ".", pattern = NULL, all.files = FALSE, full.names = TRU
 
   if (!is.null(pattern)) {
     files_norm <- gsub("\\\\", "/", files)
-    idxs <- grep(pattern, files_norm, ignore.case = ignore.case)
+    idxs <- grep(pattern, files_norm, ignore.case = ignore.case, perl = perl)
     files <- files[idxs]
   }
 
