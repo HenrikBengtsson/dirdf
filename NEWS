@@ -1,7 +1,7 @@
 Package: dirdf
 ==============
 
-Version: 0.0.0-9007 [2018-06-28]
+Version: 0.1.0 [2018-06-28]
 
 NEW FEATURES:
 
@@ -27,7 +27,7 @@ Version: 0.0.0-9004 [2017-05-27]
 
 DOCUMENTATION:
 
- * Add vignette with examples by turning the rOpenSci 2016 unconf HTML slides
+ * Add vignette with examples by turning the rOpenSci Unconf 2016 HTML slides
    into an Rmarkdown document.
 
 
@@ -43,7 +43,7 @@ Version: 0.0.0-9001 [2016-04-02]
 NEW FEATURES:
 
  * dirdf_parse(), and thereby dirdf(), now support most of the initial
-   template features that we decided to tackle at rOpenSci 2016 unconf.
+   template features that we decided to tackle at the rOpenSci Unconf 2016.
 
 DOCUMENTATION:
 
@@ -54,9 +54,9 @@ Version: 0.0.0-9000 [2016-04-01]
 
 NEW FEATURES:
 
- * Add very rudimentary versions of dirdf() and dirdf_parse().
+ * Add rudimentary versions of dirdf() and dirdf_parse().
 
 NOTES:
 
- * This package, dirdf, was created at the rOpenSci 2016 unconference in
-   San Francisco, CA, on April 1-2, 2016.
+ * This package, dirdf, was created at the rOpenSci Unconference 2016 in
+   San Francisco, CA, on March 31-April 1, 2016.
