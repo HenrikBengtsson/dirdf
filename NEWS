@@ -1,0 +1,62 @@
+Package: dirdf
+==============
+
+Version: 0.0.0-9007 [2018-06-28]
+
+NEW FEATURES:
+
+ * Fields can now be dropped by surrounding them the with tilde symbols, e.g.
+   template = "dataset/name.~ext~" and template = "dataset/name.~ext?~".
+
+
+Version: 0.0.0-9006 [2018-04-26]
+
+NEW FEATURES:
+
+ * Add dirdf2() - as dirdf() but where file matching uses dir2() rather than
+   dir() so match files by regular expression on the full pathname.
+
+ * Add dir2() - an analogue to base::dir() but where the 'pattern' argument
+   matches the full pathname rather than just the basename of the file.
+   Moreover, argument 'recursive' can also be an non-negative integer
+   specifying the depth of the recursive search, where recursive = 0
+   corresponds to recursive = FALSE, and recursive = Inf to recursive = TRUE.
+
+
+Version: 0.0.0-9004 [2017-05-27]
+
+DOCUMENTATION:
+
+ * Add vignette with examples by turning the rOpenSci 2016 unconf HTML slides
+   into an Rmarkdown document.
+
+
+Version: 0.0.0-9002 [2016-04-23]
+
+BUG FIXES:
+
+ * dirdf() did not pass 'template' to dirdf_parse().
+
+
+Version: 0.0.0-9001 [2016-04-02]
+
+NEW FEATURES:
+
+ * dirdf_parse(), and thereby dirdf(), now support most of the initial
+   template features that we decided to tackle at rOpenSci 2016 unconf.
+
+DOCUMENTATION:
+
+ * Add help for `dirdf()`, `dirdf_parse()` and on templates.
+ 
+
+Version: 0.0.0-9000 [2016-04-01]
+
+NEW FEATURES:
+
+ * Add very rudimentary versions of dirdf() and dirdf_parse().
+
+NOTES:
+
+ * This package, dirdf, was created at the rOpenSci 2016 unconference in
+   San Francisco, CA, on April 1-2, 2016.
