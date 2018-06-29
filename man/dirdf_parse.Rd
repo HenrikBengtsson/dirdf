@@ -14,7 +14,9 @@ dirdf_parse(pathnames, template = NULL, regexp = NULL, colnames = NULL,
 \item{template}{\link[=templates]{template} character string, e.g.
 \code{"Country/Province/City/StationID_Date.ext"}.}
 
-\item{regexp}{regular expression used to parse the file names.}
+\item{regexp}{regular expression used to parse the file names.
+Only one of the arguments \code{regexp} and \code{template} must be specified, i.e.
+only one of them can be non-\code{NULL}.}
 
 \item{colnames}{character vector containing the names of the columns in the
 data frame. Not required if using \code{template} or if \code{regexp} uses
@@ -25,7 +27,7 @@ column names.}
 regexp capturing groups.}
 
 \item{ignore.case, perl}{If \code{regexp} is used, these are passed to
-\code{\link[base:regexpr]{base::regexpr()}}. Note that unlike \code{regexpr}, the default value
+\code{\link[base:regexpr]{base::regexpr()}}. Note that unlike \code{regexpr()}, the default value
 for \code{perl} is \code{TRUE} (to make it more convenient to use named
 capture groups, which are only supported in Perl mode).}
 }

@@ -17,7 +17,9 @@ dirdf2(paths, template = NULL, regexp = NULL, colnames = NULL,
 \item{template}{\link[=templates]{template} character string, e.g.
 \code{"Country/Province/City/StationID_Date.ext"}.}
 
-\item{regexp}{regular expression used to parse the file names.}
+\item{regexp}{regular expression used to parse the file names.
+Only one of the arguments \code{regexp} and \code{template} must be specified, i.e.
+only one of them can be non-\code{NULL}.}
 
 \item{colnames}{character vector containing the names of the columns in the
 data frame. Not required if using \code{template} or if \code{regexp} uses

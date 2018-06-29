@@ -17,6 +17,8 @@
 #'   `"Country/Province/City/StationID_Date.ext"`.
 #' 
 #' @param regexp regular expression used to parse the file names.
+#'   Only one of the arguments `regexp` and `template` must be specified, i.e.
+#'   only one of them can be non-`NULL`.
 #' 
 #' @param colnames character vector containing the names of the columns in the
 #'   data frame. Not required if using `template` or if `regexp` uses
@@ -27,7 +29,7 @@
 #'   regexp capturing groups.
 #' 
 #' @param ignore.case,perl If `regexp` is used, these are passed to
-#'   [base::regexpr()]. Note that unlike `regexpr`, the default value
+#'   [base::regexpr()]. Note that unlike `regexpr()`, the default value
 #'   for `perl` is `TRUE` (to make it more convenient to use named
 #'   capture groups, which are only supported in Perl mode).
 #'
