@@ -36,6 +36,9 @@
 #' target paths, in which case the resulting value for that variable will be
 #' `NA` (or in some edge cases, `""`).
 #'
+#' Surrounding with tilde (`~`) makes `~MiddleInitial~` to be marked for being dropped.
+#' It is possible to drop an optional field, e.g. `~MiddleInitial?~`.
+#'
 #' @examples
 #' template <- "Year-Month/Day/FirstName_MiddleInitial?_LastName.ext"
 #' paths <- c(
@@ -62,7 +65,7 @@ templateToRegex <- function(template) {
 
   # Match on variable names, possibly with trailing '?'.
   # Variable names may be surrounded by drop pattern '~name~'
-  m <- gregexpr("([a-z0-9]+|[~]{1}[a-z0-9]+[~]{1})\\??", template, ignore.case = TRUE)
+  m <- gregexpr("([a-z0-9]+\\??|[~]{1}[a-z0-9]+\\??[~]{1})", template, ignore.case = TRUE)
   
   # mstr holds the variable names
   mstr <- regmatches(template, m)[[1]]
@@ -76,11 +79,11 @@ templateToRegex <- function(template) {
   sep <- regmatches(template, m, invert = TRUE)[[1]]
   stop_if_not(length(sep) == length(mstr) + 1)
 
-  # col names minus trailing?
-  bareNames <- sub("\\?$", "", mstr)
-
   # col names minus drop pattern?
-  bareNames <- sub("^[~]{1}(.*)[~]{1}$", "\\1", bareNames)
+  bareNames <- sub("^[~]{1}(.*)[~]{1}$", "\\1", mstr)
+
+  # col names minus trailing?
+  bareNames <- sub("\\?$", "", bareNames)
 
   # Intentionally not using mapply because in one particular case we may
   # need to mutate sep during iteration.
@@ -97,7 +100,7 @@ templateToRegex <- function(template) {
     # The result of the callback function is a regex pattern that matches the
     # previous separator and the variable data. We need the next separator
     # just to help us form the regex for the variable data.
-    isDrop <- grepl("^[~]{1}.*[~]{1}\\??$", col)
+    isDrop <- grepl("^[~]{1}.*\\??[~]{1}$", col)
     if (isDrop) colBare <- sprintf("_DROP_BEGIN_%s_DROP_END_", colBare)
     colPattern <- if (nchar(post) == 1) {
       sprintf("(?P<%s>[^/%s]*?)", colBare, escapeRegexBrackets(post))

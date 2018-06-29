@@ -10,8 +10,9 @@
 #'
 #' @param paths character vector with zero or more paths that will be searched.
 #'
-#' @param recursive if `TRUE`, it will recursively search over directories
-#' @param ... Additional arguments pass to [base::dir()].
+#' @param recursive if `TRUE`, it will recursively search over directories.
+#' 
+#' @param \ldots Additional arguments pass to [base::dir()].
 #'
 #' @example incl/dirdf.R
 #'

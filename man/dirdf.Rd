@@ -29,9 +29,9 @@ column names.}
 \item{missing}{value to use for unmatched optional template elements or
 regexp capturing groups.}
 
-\item{recursive}{if \code{TRUE}, it will recursively search over directories}
+\item{recursive}{if \code{TRUE}, it will recursively search over directories.}
 
-\item{...}{Additional arguments pass to \code{\link[base:dir]{base::dir()}}.}
+\item{\ldots}{Additional arguments pass to \code{\link[base:dir]{base::dir()}}.}
 }
 \description{
 Creates a data frame using information from paths and file names.

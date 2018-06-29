@@ -40,6 +40,9 @@ The trailing question mark makes \code{MiddleInitial?} optional; both its
 value and its preceding delimiter (\code{_} in this case) can be omitted from
 target paths, in which case the resulting value for that variable will be
 \code{NA} (or in some edge cases, \code{""}).
+
+Surrounding with tilde (\code{~}) makes \code{~MiddleInitial~} to be marked for being dropped.
+It is possible to drop an optional field, e.g. \code{~MiddleInitial?~}.
 }
 \examples{
 template <- "Year-Month/Day/FirstName_MiddleInitial?_LastName.ext"
