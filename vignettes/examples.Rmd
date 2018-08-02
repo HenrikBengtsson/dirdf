@@ -65,3 +65,16 @@ dirdf::dirdf(path, template = "date_assay_experiment_well?.ext")
 9  LabB 2015 2014-07-06     OTHER Plasmid-Cellline-100  B01 csv     LabB,2015/2014-07-06_OTHER_Plasmid-Cellline-100_B01.csv
 10 LabB 2015 2016-01-11     OTHER     FFPEDNA-CRC-2-41 &lt;NA&gt; csv    LabB,2015/2016-01-11_OTHER_FFPEDNA-CRC-2-41.csv
 ```
+
+
+## Yet-to-be-organized "random" examples
+
+```{r}
+dirdf::dirdf_parse("foo,tag=100.rds", template = "name,~tag~=binsize.ext")
+dirdf::dirdf_parse("foo,tag=100.rds", template = "name,binsize.ext")
+dirdf::dirdf_parse("foo,tag=100.rds", template = "name,param.ext")
+dirdf::dirdf_parse(c("foo,tag=100.rds", "bar.rds"), template = "name,param?.ext")
+dirdf::dirdf_parse("foo,tag=100.rds", template = "name,key=value.ext")
+dirdf::dirdf_parse(c("foo,tag=100.rds", "bar.rds"), template = "name,key?=value?.ext")
+dirdf::dirdf_parse(c("foo,tag_a=100.rds", "bar.rds"), template = "name,key?=value?.ext")
+```

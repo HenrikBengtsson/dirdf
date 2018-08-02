@@ -4,8 +4,9 @@
 \alias{dirdf_parse}
 \title{Path Metadata Parsing}
 \usage{
-dirdf_parse(pathnames, template = NULL, regexp = NULL, colnames = NULL,
-  missing = NA_character_, ignore.case = FALSE, perl = TRUE)
+dirdf_parse(pathnames, template = NULL, regexp = NULL,
+  colnames = NULL, missing = NA_character_, ignore.case = FALSE,
+  perl = TRUE)
 }
 \arguments{
 \item{pathnames}{character vector of pathname(s), e.g. the result of calling

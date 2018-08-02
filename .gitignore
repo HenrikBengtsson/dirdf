@@ -11,3 +11,4 @@ Makefile
 .covr.rds
 covr-utils.R
 inst/doc
+vignettes/*.html

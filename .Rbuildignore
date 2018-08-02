@@ -6,4 +6,4 @@
 ^covr-utils.R$
 ^incl/
 ^appveyor.yml$
-
+^vignettes/.*.html$
