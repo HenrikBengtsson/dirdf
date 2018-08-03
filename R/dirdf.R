@@ -18,6 +18,9 @@
 #'
 #' @export
 dirdf <- function(paths, template = NULL, regexp = NULL, colnames = NULL, missing = NA_character_, recursive = TRUE, ...) {
+  stop_if_not(xor(!is.null(template), !is.null(regexp)))
+  stop_if_not(length(missing) == 1L)
+  
   pathnames <- lapply(paths, FUN = dir, recursive = recursive, ...)
   pathnames <- unlist(pathnames, use.names = FALSE)
 
@@ -28,6 +31,9 @@ dirdf <- function(paths, template = NULL, regexp = NULL, colnames = NULL, missin
 #' @rdname dirdf
 #' @export
 dirdf2 <- function(paths, template = NULL, regexp = NULL, colnames = NULL, missing = NA_character_, recursive = TRUE, ...) {
+  stop_if_not(xor(!is.null(template), !is.null(regexp)))
+  stop_if_not(length(missing) == 1L)
+  
   pathnames <- lapply(paths, FUN = dir2, recursive = recursive, ...)
   pathnames <- unlist(pathnames, use.names = FALSE)
 

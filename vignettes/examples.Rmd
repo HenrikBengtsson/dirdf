@@ -76,5 +76,5 @@ dirdf::dirdf_parse("foo,tag=100.rds", template = "name,param.ext")
 dirdf::dirdf_parse(c("foo,tag=100.rds", "bar.rds"), template = "name,param?.ext")
 dirdf::dirdf_parse("foo,tag=100.rds", template = "name,key=value.ext")
 dirdf::dirdf_parse(c("foo,tag=100.rds", "bar.rds"), template = "name,key?=value?.ext")
-dirdf::dirdf_parse(c("foo,tag_a=100.rds", "bar.rds"), template = "name,key?=value?.ext")
+dirdf::dirdf_parse(c("foo,tag_a=100.rds", "foo2,tag=200.rds", "bar.rds"), template = "name,key?=value?.ext")
 ```
