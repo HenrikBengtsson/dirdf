@@ -63,7 +63,12 @@ templateToRegex <- function(template) {
   stop_if_not(is.character(template))
   stop_if_not(length(template) == 1)
 
-  # Match on variable names, possibly with trailing '?'.
+  ## Assert that template does not contain '~name~?' - should be '~name?~'
+  if (grepl("[~]([a-z0-9]+)[~]\\?", template)) {
+    stop("Invalid template. ~name~? is invalid whereas ~name?~ is valid: ", sQuote(template))
+  }
+
+  # Match on variable names, possibly with trailing question mark ('?').
   # Variable names may be surrounded by drop pattern '~name~'
   m <- gregexpr("([a-z0-9]+\\??|[~]{1}[a-z0-9]+\\??[~]{1})", template, ignore.case = TRUE)
   
@@ -82,7 +87,7 @@ templateToRegex <- function(template) {
   # col names minus drop pattern?
   bareNames <- sub("^[~]{1}(.*)[~]{1}$", "\\1", mstr)
 
-  # col names minus trailing?
+  # col names minus trailing question mark ('?')
   bareNames <- sub("\\?$", "", bareNames)
 
   # Intentionally not using mapply because in one particular case we may
