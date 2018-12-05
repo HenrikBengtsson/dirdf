@@ -1,7 +1,7 @@
 context("templates")
 
 verifyTemplate <- function(template, path, expected, ...) {
-  results <- dirdf_parse(path, template, ...)[1,,drop=TRUE]
+  results <- dirdf_parse(path, template, ...)[,,drop=TRUE]
   expect_equivalent(results, c(expected, list(pathname=path)))
 }
 
@@ -117,5 +117,20 @@ describe("Optional vars", {
       "foo/-bar",
       list(dir="foo", prefix=NA_character_, name="bar")
     )
+  })
+})
+
+
+describe("Dropping vars", {
+  it("basically functions", {
+    verifyTemplate(
+      "package/~libs~/~arch~/package2.ext",
+      c("class/libs/i386/class.dll", "foreign/libs/i386/foreign.dll"),
+      list(package=c("class", "foreign"), package2=c("class", "foreign"), ext=c("dll", "dll"))
+    )
+  })
+  
+  it("detects invalid syntax", {
+    expect_error(dirdf_parse("", template = "name,~key~?=file"))
   })
 })
